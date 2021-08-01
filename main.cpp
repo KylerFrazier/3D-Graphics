@@ -1,7 +1,7 @@
 #ifdef __APPLE_CC__
-#include <GLUT/glut.h>
+    #include <GLUT/glut.h>
 #else
-#include <GL/glut.h>
+    #include <GL/glut.h>
 #endif
 
 #include <iostream>
@@ -34,9 +34,8 @@ int main(int argc, char** argv) {
     std::cout << "The arguments:" << std::endl;
     for (int i = 0; i < argc; i++) {
         std::string arg(argv[i]);
-        std::cout << '\t' << arg;
+        std::cout << "    " << arg << std::endl;
     }
-    std::cout << std::endl;
 
     // Use a single buffered window in RGB mode (as opposed to a double-buffered
     // window or color-index mode).
