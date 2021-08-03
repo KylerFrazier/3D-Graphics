@@ -9,6 +9,14 @@ project(3D_graphics)
 add_executable(
     ${EXEC_NAME}
     main.cpp
+    Renderable.hpp
+    Renderable.cpp
+    Vector3.hpp
+    Vector3.cpp
+    Cube.hpp
+    Cube.cpp
+    Renderer.hpp
+    Renderer.cpp
 )
 
 if (POLICY CMP0072)
