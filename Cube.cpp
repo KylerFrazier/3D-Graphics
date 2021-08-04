@@ -1,4 +1,5 @@
 #include "Cube.hpp"
+#include <cmath>
 
 Cube::Cube() {
     init(0);
@@ -13,7 +14,7 @@ void Cube::init(unsigned density) {
 
     Quaternion tilt(0.5f, Vector3{1.0f, 0.0f, 0.0f});
 
-    tspeed = Vector3{1.0f,1.0f,1.0f}/200.0f;
+    tspeed = Vector3{1.0f,0.0f,0.0f}/200.0f;
     sspeed = 0.995f;
     rspeed = Quaternion(0.01f, tilt * Vector3{0.0f, 1.0f, 0.0f});
 
@@ -78,4 +79,10 @@ void Cube::update(float time) {
     // translate(tspeed);
     rotate(rspeed);
     // scale(sspeed);
+    // std::cout << sspeed << std::endl;
+    // if ((int)(time/2) % 2 == 0)
+    //     sspeed = 1.0f - std::abs(1.0f-sspeed);
+    // else
+    //     sspeed = 1.0f + std::abs(1.0f-sspeed);
+    
 }

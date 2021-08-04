@@ -18,9 +18,11 @@ public:
     void update(float time) override;
 private:
     static constexpr float S = 0.5f;
+
     Vector3 tspeed;
     float sspeed;
     Quaternion rspeed;
+    
     void init(unsigned density);
     void makeVertices(unsigned density);
 };
