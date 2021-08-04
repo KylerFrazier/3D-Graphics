@@ -12,6 +12,6 @@ namespace renderer {
     void display();
     void update(int);
     void addRenderable(std::shared_ptr<Renderable> r);
-}
+};
 
 #endif

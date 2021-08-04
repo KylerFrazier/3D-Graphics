@@ -34,8 +34,18 @@ Vector3 operator*(float const& c, Vector3 const& v) {
     return v*c;
 }
 
+Vector3& Vector3::operator*=(const float& c) {
+    x *= c; y *= c; z *= c; 
+    return *this;
+}
+
 Vector3 Vector3::operator/(const float& c) const {
     return Vector3(x/c, y/c, z/c);
+}
+
+Vector3& Vector3::operator/=(const float& c) {
+    x /= c; y /= c; z /= c; 
+    return *this;
 }
 
 std::string Vector3::toString() const {

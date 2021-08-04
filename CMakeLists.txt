@@ -13,6 +13,8 @@ add_executable(
     Renderable.cpp
     Vector3.hpp
     Vector3.cpp
+    Quaternion.hpp
+    Quaternion.cpp
     Cube.hpp
     Cube.cpp
     Renderer.hpp

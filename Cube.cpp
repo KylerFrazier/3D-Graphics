@@ -9,8 +9,15 @@ Cube::Cube(unsigned density) {
 }
 
 void Cube::init(unsigned density) {
-    speed = Vector3(1.0f,1.0f,1.0f)/200.0f;
     makeVertices(density);
+
+    Quaternion tilt(0.5f, Vector3{1.0f, 0.0f, 0.0f});
+
+    tspeed = Vector3{1.0f,1.0f,1.0f}/200.0f;
+    sspeed = 0.995f;
+    rspeed = Quaternion(0.01f, tilt * Vector3{0.0f, 1.0f, 0.0f});
+
+    rotate(tilt); 
 }
 
 void Cube::makeVertices(unsigned density) {
@@ -49,21 +56,26 @@ void Cube::translate(float x, float y, float z) {
     }
 }
 
+void Cube::rotate(const Quaternion& q) {
+    for (int i = 0; i < vertices.size(); i++)
+        vertices[i] = q * vertices[i];
+}
+
 void Cube::scale(float c) {
-    for (int i = 0; i < vertices.size(); i++) {
-        vertices[i] = vertices[i]*c;
-    }
+    for (int i = 0; i < vertices.size(); i++)
+        vertices[i] *= c;
 }
 
 void Cube::scale(float x, float y, float z) {
     for (int i = 0; i < vertices.size(); i++) {
-        vertices[i].x = vertices[i].x*x;
-        vertices[i].y = vertices[i].y*y;
-        vertices[i].z = vertices[i].z*z;
+        vertices[i].x *= x;
+        vertices[i].y *= y;
+        vertices[i].z *= z;
     }
 }
 
 void Cube::update(float time) {
-    translate(speed);
-    scale(0.995f);
+    // translate(tspeed);
+    rotate(rspeed);
+    // scale(sspeed);
 }
