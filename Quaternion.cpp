@@ -2,18 +2,15 @@
 #include <cmath>
 #include <iostream>
 
-Quaternion::Quaternion() : w(1), v(Vector3()) {
-    makeMatrix();
-}
+Quaternion::Quaternion() : Quaternion(1, Vector3()) {}
 
 Quaternion::Quaternion(float theta, Vector3 axis) 
 : w(std::cos(theta/2)), v(std::sin(theta/2)*axis) {
     makeMatrix();
 }
 
-Quaternion::Quaternion(float theta, float x, float y, float z) {
-    Quaternion(theta, Vector3(x, y, z));
-}
+Quaternion::Quaternion(float theta, float x, float y, float z)
+: Quaternion(theta, Vector3(x, y, z)) {}
 
 Vector3 Quaternion::operator*(const Vector3& vector) const {
     float vec[4] = {vector.x, vector.y, vector.z, 1};

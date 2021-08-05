@@ -2,7 +2,7 @@
 #include <string>
 #include <memory>
 #include "Renderer.hpp"
-#include "Cube.hpp"
+#include "AnimateScript.hpp"
 
 int main(int argc, char* argv[]) {
 
@@ -13,8 +13,8 @@ int main(int argc, char* argv[]) {
         std::cout << "    " << arg << std::endl;
     }
 
-    std::shared_ptr<Cube> cube = std::make_shared<Cube>(20);
-    renderer::addRenderable(cube);
+    std::shared_ptr<AnimateScript> script = std::make_shared<AnimateScript>();
+    renderer::addRenderable(script);
 
     renderer::init(&argc, argv);
     return 0;

@@ -14,7 +14,7 @@ void renderer::init(int* argc, char* argv[]) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 
     glutInitWindowPosition(80, 80);
-    glutInitWindowSize(1280, 720);
+    glutInitWindowSize(720, 720);
     glutCreateWindow("Render");
 
     glutDisplayFunc(display);

@@ -19,6 +19,8 @@ add_executable(
     Cube.cpp
     Renderer.hpp
     Renderer.cpp
+    AnimateScript.hpp
+    AnimateScript.cpp
 )
 
 if (POLICY CMP0072)

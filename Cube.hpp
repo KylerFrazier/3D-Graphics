@@ -12,18 +12,14 @@ public:
     void translate(const Vector3& v);
     void translate(float x, float y, float z);
     void rotate(const Quaternion& q);
+    void localRotate(const Quaternion& q);
     void scale(float c);
     void scale(float x, float y, float z);
-    // void localRotate(int direction, float radians);
-    void update(float time) override;
 private:
     static constexpr float S = 0.5f;
 
-    Vector3 tspeed;
-    float sspeed;
-    Quaternion rspeed;
+    Vector3 translation;
     
-    void init(unsigned density);
     void makeVertices(unsigned density);
 };
 

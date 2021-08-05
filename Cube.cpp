@@ -1,25 +1,8 @@
 #include "Cube.hpp"
-#include <cmath>
 
-Cube::Cube() {
-    init(0);
-}
+Cube::Cube() { makeVertices(0); }
 
-Cube::Cube(unsigned density) {
-    init(density);
-}
-
-void Cube::init(unsigned density) {
-    makeVertices(density);
-
-    Quaternion tilt(0.5f, Vector3{1.0f, 0.0f, 0.0f});
-
-    tspeed = Vector3{1.0f,0.0f,0.0f}/200.0f;
-    sspeed = 0.995f;
-    rspeed = Quaternion(0.01f, tilt * Vector3{0.0f, 1.0f, 0.0f});
-
-    rotate(tilt); 
-}
+Cube::Cube(unsigned density) { makeVertices(density); }
 
 void Cube::makeVertices(unsigned density) {
     const float step = 2*S/(density+1);
@@ -45,44 +28,36 @@ void Cube::makeVertices(unsigned density) {
 }
 
 void Cube::translate(const Vector3& v) {
+    translation += v;
     for (Vector3& vertex : vertices) 
         vertex += v;
 }
 
 void Cube::translate(float x, float y, float z) {
-    for (Vector3& v : vertices) {
-        v.x += x;
-        v.y += y;
-        v.z += z;
-    }
+    translate(Vector3(x, y, z));
 }
 
 void Cube::rotate(const Quaternion& q) {
+    translation = q * translation;
     for (int i = 0; i < vertices.size(); i++)
         vertices[i] = q * vertices[i];
 }
 
+void Cube::localRotate(const Quaternion& q) {
+    for (int i = 0; i < vertices.size(); i++) {
+        vertices[i] = translation + q * (vertices[i] - translation);
+    }
+}
+
 void Cube::scale(float c) {
     for (int i = 0; i < vertices.size(); i++)
-        vertices[i] *= c;
+        vertices[i] = translation + c * (vertices[i] - translation);
 }
 
 void Cube::scale(float x, float y, float z) {
     for (int i = 0; i < vertices.size(); i++) {
-        vertices[i].x *= x;
-        vertices[i].y *= y;
-        vertices[i].z *= z;
+        vertices[i].x = translation.x + x * (vertices[i].x - translation.x);
+        vertices[i].y = translation.y + y * (vertices[i].y - translation.y);
+        vertices[i].z = translation.z + z * (vertices[i].z - translation.z);
     }
-}
-
-void Cube::update(float time) {
-    // translate(tspeed);
-    rotate(rspeed);
-    // scale(sspeed);
-    // std::cout << sspeed << std::endl;
-    // if ((int)(time/2) % 2 == 0)
-    //     sspeed = 1.0f - std::abs(1.0f-sspeed);
-    // else
-    //     sspeed = 1.0f + std::abs(1.0f-sspeed);
-    
 }

@@ -15,6 +15,8 @@ public:
     float& operator[](int i) ;
     Vector3 operator+(Vector3 const& v) const;
     Vector3& operator+=(Vector3 const& v);
+    Vector3 operator-(Vector3 const& v) const;
+    Vector3& operator-=(Vector3 const& v);
     Vector3 operator*(float const& c) const;
     Vector3& operator*=(float const& c);
     Vector3 operator/(const float& c) const;
