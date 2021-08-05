@@ -3,8 +3,8 @@
 Hahah, space picture go brrrrr
 # But how do I run this?
 Use CMake and Make to get things set up. The output file is called `render`. For example:
-  * git clone <this repo>
-  * cd <directory of this repo>
+  * git clone *this repo*
+  * cd *dir of this repo*
   * mkdir build
   * cd build
   * cmake ..
